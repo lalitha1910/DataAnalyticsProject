@@ -8,9 +8,8 @@ title: "Slides"
 
 <!-- _class: lead -->
 
-# Data Analyst Project
-Analyzing Consumer Behavior in Online Retail: Insights from a UK E-Commerce Dataset
-
+## Analyzing Consumer Behavior in Online Retail: Insights from a UK E-Commerce Dataset
+Data Analyst Project
 
 ---
 <!-- paginate: true -->
@@ -41,23 +40,24 @@ Analyzing Consumer Behavior in Online Retail: Insights from a UK E-Commerce Data
 ## Data Set Description
 
 1. This dataset contains actual transaction data from a UK-based online retail store.
-2. It contains transaction data from November 2010 to December 2011.
-3. There are approximately 500,000 records.
+2. It contains transaction data from **November 2010** to **December 2011**.
+3. There are approximately **500,000** records.
 
 ---
-## Data Set Attributes
+## Dataset Attributes
 
-- InvoiceNo: Invoice number (a unique identifier for each transaction)
-- StockCode: Product code
-- Description: Product description
-- Quantity: Quantity of product purchased
-- InvoiceDate: Date and time of purchase
-- UnitPrice: Product price per unit
-- CustomerID: Unique customer identifier
-- Country: Country from where the order was placed
+- **InvoiceNo**: *Invoice number (a unique identifier)*
+- **StockCode**: *Product code*
+- **Description**: *Product description*
+- **Quantity**: *Quantity of product purchased*
+- **InvoiceDate**: *Date and time of purchase*
+- **UnitPrice**: *Product price per unit*
+- **CustomerID**: *Unique customer identifier*
+- **Country**: *Country from where the order was placed*
 
 ---
 ## Read File 
+- Import the CSV file as a DataFrame using the pandas library.
 
 ```py
 # import library
@@ -73,6 +73,8 @@ data.head()
 ---
 ## Basic Info
 
+- The info() method in pandas was used to inspect the details.
+
 ```py
 # find data info
 data.info()
@@ -82,6 +84,8 @@ data.info()
 
 ---
 ## Statistical Description
+
+- The describe() method was used to obtain a statistical summary.
 
 ```py
 # statistical description
@@ -93,13 +97,13 @@ data.describe(include='all')
 ---
 ## Potential Business Hypothesis
 
-Quantity and UnitPrice Relationship:
+*Quantity* and *UnitPrice* Relationship:
 
-- Hypothesis: There is a relationship between the quantity of a product sold and its unit price
+- **Hypothesis**: *There is a relationship between the quantity of a product sold and its unit price*
 
-- Dependent Variable: Quantity
+- **Dependent Variable**: *Quantity*
 
-- Independent Variable: UnitPrice
+- **Independent Variable**: *UnitPrice*
 
 ---
 <!-- _class: lead -->
@@ -108,7 +112,7 @@ Quantity and UnitPrice Relationship:
 
 ---
 ## Handling Missing Values
-- No missing value found in Quantity and UnitPrice
+- No missing value found in *Quantity* and *UnitPrice*.
 
 ```py
 # find missing value
@@ -119,19 +123,33 @@ missing_values
 ![w:400 h:240](pic4.png)
 
 ---
-## Handling Outlier
-To detect outliers in the "Quantity" and "UnitPrice" columns, we can use the Interquartile Range (IQR) method. This involves:
-1. Calculating the first (Q1) and third quartiles (Q3) for each column.
-2. Determining the IQR, which is the difference between Q3 and Q1.
-3. Identifying outliers as values that fall below Q1−1.5×IQR or above Q3+1.5×IQR.
+## Removing Outlier
+Outlier Detection Method
+- To detect outliers in the *Quantity* and *UnitPrice* columns, the **Interquartile Range (IQR)** method was used. This involves:
+
+Based on the **IQR** method:
+
+- *Quantity* = **58,619** outliers detected/ removed 
+- *UnitPrice* = **39,627** outliers detected/ removed 
 
 ---
-## Handling Outlier
-Based on the Interquartile Range (IQR) method:
 
-- There are 58,619 outliers detected in the "Quantity" column.
-- There are 39,627 outliers detected in the "UnitPrice" column.
+## Removing Unusual Values 
 
+Negative values in the *Quantity* can represent a few different scenarios:
+
+1. Returns or Cancellations
+
+2. Discounts or Adjustments
+
+3. Data Entry Errors
+
+```py
+# Remove rows where "Quantity" is negative
+data_cleaned = data_cleaned[data_cleaned["Quantity"] >= 0]
+```
+
+![bg right:20% 70%](pic9.png)
 
 ---
 
@@ -145,33 +163,33 @@ Based on the Interquartile Range (IQR) method:
 ```py
 # find Pearson correlation coeeficient
 correlation_coefficient = data_cleaned["Quantity"].corr(data_cleaned["UnitPrice"])
-
-correlation_coefficient
 ```
 
-- The Pearson correlation coefficient between "Quantity" and "UnitPrice" in the cleaned dataset is approximately −0.2805
+- The Pearson correlation coefficient between *Quantity* and *UnitPrice* in the cleaned dataset is approximately **-0.294**
 
-- This indicates a weak negative correlation between the two variables. As the quantity increases, the unit price tends to decrease slightly (and vice versa), but the relationship is not very strong.
+- This indicates a **weak negative correlation** between the two variables. 
+
+- As the quantity increases, the unit price tends to decrease slightly.
 
 ---
 ## Updated Business Hypothesis
 
-Quantity and TotalSales Relationship:
+*Quantity* and *TotalSales* Relationship:
 
-- Hypothesis: There is a relationship between the quantity of a product sold and its total sales
+- **Hypothesis**: *There is a relationship between the quantity of a product sold and its total sales*
 
-- Dependent Variable: Quantity
+- **Dependent Variable**: *Quantity*
 
-- Independent Variable: TotalSales
+- **Independent Variable**: *TotalSales*
 
 
 
 ---
 ## Feature Engineering: TotalSales
 
-The new variable, "TotalSales", will be computed as:
+The new variable, *TotalSales*, will be computed as:
 
-$TotalSales = Quantity × UnitPrice$   
+$$TotalSales = Quantity × UnitPrice$$  
 
 ```py
 # Create the new "TotalSales" variable
@@ -192,21 +210,15 @@ data_cleaned.head()
 ```py
 # Compute the Pearson correlation coefficient between "Quantity" and "TotalSales" 
 correlation_total_sales_quantity = data_cleaned["TotalSales"].corr(data_cleaned["Quantity"])
-
-correlation_total_sales_quantity
 ```
 
-- The Pearson correlation coefficient between "Quantity" and "TotalSales" in the cleaned dataset is approximately 0.6062.
+- The Pearson correlation coefficient between *Quantity* and *TotalSales* in the cleaned dataset is approximately **0.588**.
 
-- This indicates a moderate positive correlation between the two variables. As the quantity increases, the total sales also tend to increase, which is expected since "TotalSales" is derived from "Quantity" (among other factors).
-
----
-## Result
-- There is moderate positive correlation between "Quantity" and "TotalSales" 
-
-
+- This indicates a **moderate positive correlation** between the two variables. 
+- As the quantity increases, the total sales also tend to increase, which is expected since *TotalSales* is derived from *Quantity*.
 
 ---
+
 ## New Cleaned Dataset
 
 ```py
@@ -217,16 +229,55 @@ data_cleaned.head()
 ![w:1140 h:300](pic7.png)
 
 ---
+## Prediction
+
+- Predictions were made using a Simple Linear Regression (SLR) model.
+
+![bg right:65% 90%](pic8.png)
+
+---
+## Model Evaluation: $R^2$
+
+- The $R^2$ score, or coefficient of determination, measures how well the independent variables explain the variation in the dependent variable.
+- For this model, the $R^2$ score is approximately **0.346**.
+- This means that around **34.6%** of the variation in *TotalSales* can be explained by *Quantity*.
+- While this shows some level of correlation, it suggests that other features not included in the model might also be influencing *TotalSales*.
+
+---
+## Model Evaluation: MSE 
+
+- The Mean Squared Error (MSE) quantifies the average squared difference between the predicted and actual values.
+- For this model, the MSE is approximately **90.66**.
+- An MSE value closer to zero indicates better model performance and more precise predictions.
+- The relatively higher MSE of **90.66** suggests that there is room for improvement in the model's predictions, as the predicted values deviate from the actual values to some extent.
+
+---
+## Enhancing Model Performance
+
+1. **Incorporate Additional Variables:**
+Integrate other relevant features, such as product category, time of purchase, or customer demographics, which may provide additional insights into total sales.
+
+2. **Address Negative Values in Quantity:**
+Investigate the context and reasons behind negative values in the *Quantity* variable.
+
+---
 <!-- _class: lead -->
 
 # Task III: Results Visualisation
 
 ---
-## New Cleaned Dataset
-- We will take the cleaned data and generate few visualisation using Tableau  
+## Tableau Dashboard
+- We have created dashboard using the cleaned dataset
+[Link](https://scholar.google.com/citations?user=F-YH72IAAAAJ&hl=en) 
 
 ---
 ## Bar Chart
 
 
 ---
+## Scatter Plot I
+
+---
+## Scatter Plot II
+
+----
