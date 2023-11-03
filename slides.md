@@ -9,11 +9,11 @@ title: "Slides"
 <!-- _class: lead -->
 
 ## Analyzing Consumer Behavior in Online Retail: Insights from a UK E-Commerce Dataset
-Data Analyst Project
+Profesional Certificate Data Analytics (SP-ZG001)
 
 ---
 <!-- paginate: true -->
-<!-- footer: Profesional Certificate Data Analytics - Lalitha Shamugam  -->
+<!-- footer: Data Analyst Project - Lalitha Shamugam  -->
 
 # Presenter
 
@@ -23,13 +23,19 @@ Data Analyst Project
 
 - [LinkedIn](https://www.linkedin.com/in/lalithashamugam/)
 
+**Materials**
+- Jupyter Notebook, Dataset, Slides --> [GitHub](https://github.com/lalitha1910/DataAnalyticsProject) 
+
+- Visualisation, Dahsboard, Story --> [Tableau Dashboard](https://public.tableau.com/views/AnalyzingConsumerBehavior/Story1?:language=en-GB&:display_count=n&:origin=viz_share_link) 
+
 ---
+
 <!-- _class: lead -->
 
-# Task I: Topic and Data Set 
+# Task I: Topic and Dataset 
 
 ---
-## Data Set Info
+## Dataset Info
 
 - The dataset chosen is "E-commerce Data".
 - It is available in the following [link](https://www.kaggle.com/datasets/carrie1/ecommerce-data/data).
@@ -37,7 +43,7 @@ Data Analyst Project
 ![bg right:60% 85%](pic1.png)
 
 ---
-## Data Set Description
+## Dataset Description
 
 1. This dataset contains actual transaction data from a UK-based online retail store.
 2. It contains transaction data from **November 2010** to **December 2011**.
@@ -125,7 +131,7 @@ missing_values
 ---
 ## Removing Outlier
 Outlier Detection Method
-- To detect outliers in the *Quantity* and *UnitPrice* columns, the **Interquartile Range (IQR)** method was used. This involves:
+- To detect outliers in the *Quantity* and *UnitPrice* columns, the **Interquartile Range (IQR)** method was used. 
 
 Based on the **IQR** method:
 
@@ -155,7 +161,7 @@ data_cleaned = data_cleaned[data_cleaned["Quantity"] >= 0]
 
 ## Scatter Plot
 - It is difficult to observe any pattern or linear relationship.
-- Clearly this will have no or weak relationship.
+- Clearly, this will have no or weak relationship.
 ![bg right:65% 90%](pic5.png)
 
 ---
@@ -202,7 +208,7 @@ data_cleaned.head()
 ---
 ## Scatter Plot
 - Now, the linear relationship is much more visible.
-- Clearly this will have moderate or strong positive linear relationship.
+- Clearly, this will have moderate or strong positive linear relationship.
 ![bg right:65% 90%](pic6.png)
 
 ---
@@ -266,18 +272,33 @@ Investigate the context and reasons behind negative values in the *Quantity* var
 # Task III: Results Visualisation
 
 ---
+
+## TotalSales for UK vs Non-UK
+
+- Sales figures indicate that the UK accounts for a larger proportion of sales compared to other regions. 
+- It would be strategic to focus marketing efforts on customers within the UK to capitalize on this trend.
+
+![bg right:35% 42%](pic10.png)
+
+---
+## Purchase Months vs TotalSales & UnitPrice 
+
+- There is a substantial increase in customer shopping activity during the Autumn season (Sept - Nov). This surge attributed to consumers preparing for the upcoming Winter. 
+- Sales experience a sharp decline at the onset of Winter.
+
+![w:1140 h:250](pic11.png)
+
+---
+## Quantity vs TotalSales
+
+- There is a moderate positive correlation between the quantity of a product sold and its total sales.
+
+![w:1140 h:350](pic12.png)
+
+---
 ## Tableau Dashboard
-- We have created dashboard using the cleaned dataset
-[Link](https://scholar.google.com/citations?user=F-YH72IAAAAJ&hl=en) 
 
----
-## Bar Chart
+![w:1100 h:470](pic13.png)
 
 
----
-## Scatter Plot I
 
----
-## Scatter Plot II
-
-----
