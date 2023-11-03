@@ -1,7 +1,7 @@
 ---
 marp: true
 theme: gaia
-author: pradeep 
+author: lalitha 
 size: 16:9
 title: "Slides"
 ---
